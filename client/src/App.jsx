@@ -3,7 +3,7 @@ import "bootstrap";
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -36,7 +36,8 @@ import StoreContacts from "./pages/store/StoreContacts";
 import Product from "./pages/store/Product";
 import StorePage from "./components/StorePage";
 
-// let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
+// let Header= lazy(()=>import('./components/Header'))
+let Header= lazy(()=>import('./components/Header'))
 let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
 let AdminPanel= lazy(()=>import('./pages/admin/AdminPanel'))
 let SearchResults= lazy(()=>import('./components/SearchResults'))
