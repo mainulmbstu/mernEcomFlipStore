@@ -34,9 +34,10 @@ import StoreProfile from "./pages/store/StoreProfile";
 import StoreOrders from "./pages/store/StoreOrders";
 import StoreContacts from "./pages/store/StoreContacts";
 import Product from "./pages/store/Product";
-import StorePage from "./components/StorePage"
+// import StorePage from "./components/StorePage"
 
-// let Header= lazy(()=>import('./components/Header'))
+// let StorePag= lazy(()=>import('./components/StorePag'))
+let StorePage = lazy(()=>import('./components/StorePag'))
 let Header= lazy(()=>import('./components/Header'))
 let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
 let AdminPanel= lazy(()=>import('./pages/admin/AdminPanel'))
