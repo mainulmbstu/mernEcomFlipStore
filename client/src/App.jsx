@@ -13,7 +13,7 @@ import Privacy from "./pages/Privacy";
 import { Private } from "./components/routes/Private";
 import ForgotPassword from "./pages/ForgotPassword";
 import { AdminAuth } from "./components/routes/AdminAuth";
-import AdminPanel from "./pages/admin/AdminPanel";
+// import AdminPanel from "./pages/admin/AdminPanel";
 import Profile from "./pages/user/Profile";
 import ProductInput from "./pages/admin/ProductInput";
 import MoreInfo from "./components/MoreInfo";
@@ -29,14 +29,16 @@ import AdminContacts from "./pages/admin/AdminContacts";
 import CategoryHeader from "./components/CategoryHeader";
 import AdminOffer from "./pages/admin/AdminOffer";
 import { StoreAuth } from "./components/routes/StoreAuth";
-import StorePanel from "./pages/store/StorePanel";
+// import StorePanel from "./pages/store/StorePanel";
 import StoreProfile from "./pages/store/StoreProfile";
 import StoreOrders from "./pages/store/StoreOrders";
 import StoreContacts from "./pages/store/StoreContacts";
 import Product from "./pages/store/Product";
 import StorePage from "./components/StorePage";
 
-// let CreateProduct= lazy(()=>import('./pages/admin/CreateProduct'))
+// let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
+let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
+let AdminPanel= lazy(()=>import('./pages/admin/AdminPanel'))
 let SearchResults= lazy(()=>import('./components/SearchResults'))
 let Dashboard= lazy(()=>import('./pages/user/Dashboard'))
 let OfferPage= lazy(()=>import('./components/OfferPage'))
