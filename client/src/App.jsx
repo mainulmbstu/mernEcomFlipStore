@@ -37,7 +37,7 @@ import Product from "./pages/store/Product";
 // import StorePage from "./components/StorePage"
 
 // let StorePag= lazy(()=>import('./components/StorePag'))
-let StorePage = lazy(()=>import('./components/StorePag'))
+let StorePage = lazy(()=>import('./components/StorePage'))
 let Header= lazy(()=>import('./components/Header'))
 let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
 let AdminPanel= lazy(()=>import('./pages/admin/AdminPanel'))
