@@ -4,7 +4,7 @@ const {
 } = require("../helper/cloudinary");
 const { v4: uuidv4 } = require("uuid");
 const ProductModel = require("../models/productModel");
-const CategoryModel = require("../models/CategoryModel");
+const CategoryModel = require("../models/CategoryModel")
 const slugify = require("slugify");
 const OrderModel = require("../models/OrderModel");
 const { ReviewModel, RatingModel } = require("../models/ReviewModel");
