@@ -26,7 +26,7 @@ import Layout from "./components/Layout";
 import Gallery from "./pages/user/Gallery";
 import ResetNewPassword from "./pages/user/ResetNewPassword";
 import AdminContacts from "./pages/admin/AdminContacts";
-import CategoryHeader from "./components/CategoryHeader";
+// import CategoryHeader from "./components/CategoryHeader";
 import AdminOffer from "./pages/admin/AdminOffer";
 import { StoreAuth } from "./components/routes/StoreAuth";
 // import StorePanel from "./pages/store/StorePanel";
@@ -36,7 +36,8 @@ import StoreContacts from "./pages/store/StoreContacts";
 import Product from "./pages/store/Product";
 // import StorePage from "./components/StorePage"
 
-// let StorePag= lazy(()=>import('./components/StorePag'))
+// let CategoryHeader= lazy(()=>import('./components/CategoryHeader'))
+let CategoryHeader= lazy(()=>import('./components/CategoryHeader'))
 let StorePage = lazy(()=>import('./components/StorePage'))
 let Header= lazy(()=>import('./components/Header'))
 let StorePanel= lazy(()=>import('./pages/store/StorePanel'))
