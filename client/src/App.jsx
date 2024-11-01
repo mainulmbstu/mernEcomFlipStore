@@ -10,14 +10,12 @@ import Register from "./pages/Register";
 import Contacts from "./pages/Contacts";
 import Error from "./pages/Error";
 import Privacy from "./pages/Privacy";
-import Dashboard from "./pages/user/Dashboard";
 import { Private } from "./components/routes/Private";
 import ForgotPassword from "./pages/ForgotPassword";
 import { AdminAuth } from "./components/routes/AdminAuth";
 import AdminPanel from "./pages/admin/AdminPanel";
 import Profile from "./pages/user/Profile";
 import ProductInput from "./pages/admin/ProductInput";
-import SearchResults from "./components/SearchResults";
 import MoreInfo from "./components/MoreInfo";
 import Category from "./pages/Category";
 import AdminProfile from "./pages/admin/AdminProfile";
@@ -39,6 +37,8 @@ import Product from "./pages/store/Product";
 import StorePage from "./components/StorePage";
 
 // let CreateProduct= lazy(()=>import('./pages/admin/CreateProduct'))
+let SearchResults= lazy(()=>import('./components/SearchResults'))
+let Dashboard= lazy(()=>import('./pages/user/Dashboard'))
 let OfferPage= lazy(()=>import('./components/OfferPage'))
 let UserList = lazy(() => import("./pages/admin/UserList"));
 let CartPage = lazy(() => import("./pages/CartPage"));
