@@ -20,7 +20,7 @@ let { catItemChildren, products, total, setPage, getProducts, loading, page ,par
                     className={`${catItemChildren.length ? "p-2" : "d-none"}`}
                   >
                     <Link
-                      to={`/products/category/${item.slug}`}
+                      to={`/products/category/${item.slug}?cid=${item?._id}&type=${item?.type}`}
                       className=" text-decoration-none"
                     >
                       <img
