@@ -15,7 +15,7 @@ const CategoryHeader = () => {
            {v.parentId ? (
              <Link
                onClick={() => setShow(false)}
-               to={`/products/category/${v.slug}`}
+               to={`/products/category/${v.slug}?cid=${v._id}&type=${v.type}`}
              >
                {v.name}
              </Link>

@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const createCategory = async (req, res) => {
   try {
-    let { name } = req.body;
+    let { name, type } = req.body;
     name=name?.toUpperCase()
     const picturePath = req.file?.path;
     let parentId = req.body?.parentId || null;
@@ -27,6 +27,7 @@ const createCategory = async (req, res) => {
       name,
       slug: slugify(name),
       parentId,
+      type:type || 'store',
       user: req.user?._id,
       picture: picturePath,
     });
@@ -56,7 +57,7 @@ const createCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
   try {
     const id = req.params.id;
-    let { name, parentId } = req.body;
+    let { name, parentId, type } = req.body;
     const picturePath = req.file?.path;
 if (req.body?.parentId == "undefined") {
   parentId = null;
@@ -74,6 +75,7 @@ let slug=slugify(name)
     if (name) categoryExist.name= name.toUpperCase();
     if (name) categoryExist.slug = slug;
      categoryExist.parentId = parentId;
+     categoryExist.type = type;
 
     // upload and delete image on cloudinary
     if (picturePath) {
@@ -131,6 +133,7 @@ let createCategories = async (category, parentId = null) => {
       _id: v._id,
       name: v.name,
       slug: v.slug,
+      type: v.type,
       user: v.user,
       picture: v.picture,
       parentId: v.parentId,

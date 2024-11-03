@@ -2,6 +2,7 @@ const UserModel = require("../models/userModel");
 const OrderModel = require("../models/OrderModel");
 const ProductModel = require("../models/productModel");
 const GalleryModel = require("../models/GalleryModel");
+const PageModel = require("../models/PageModel");
 const { ContactModel, ContactReplyModel } = require("../models/ContactModel");
 const mailer = require("../helper/nodeMailer");
 const { v4: uuidv4 } = require("uuid");
@@ -450,6 +451,32 @@ let offer = async (req, res) => {
   }
 };
 
+//=====================================================================
+const adminProductPage = async (req, res) => {
+  try {
+    let page = req.query.page ? req.query.page : 1;
+    let size = req.query.size ? req.query.size : 4;
+    let skip = (page - 1) * size;
+    
+    const total = await PageModel.find({}).estimatedDocumentCount();
+    
+    const pages = await PageModel.find({})
+    .skip(skip)
+    .limit(size)
+    .populate("creator", { password: 0 })
+    .populate("category")
+    .sort({ createdAt: -1 });
+    if (!pages || pages.length === 0) {
+      return res.send({ msg: "No data found", pages, total });
+    }
+
+    res.status(200).send({ pages, total });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "error from adminProductPage", error });
+  }
+};
+
 module.exports = {
   userList,
   deleteUser,
@@ -465,4 +492,5 @@ module.exports = {
   adminContactReply,
   totalSale,
   offer,
+  adminProductPage,
 };

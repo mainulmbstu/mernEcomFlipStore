@@ -135,30 +135,6 @@ export const CartPage = () => {
     }
   };
 
-  //===================================================
-
-  //============== for ssl
-  // let checkout = async () => {
-  //   try {
-  //     if (!selectedCart.length) return alert('No item has been selected for check out')
-  //     let res = await fetch(
-  //       `${import.meta.env.VITE_BASE_URL}/products/order/checkout`,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //         body: JSON.stringify({ cart: selectedCart, total }),
-  //       }
-  //     );
-  //     let data = await res.json();
-  //     window.location.replace(data.url);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <Layout title={"cart"}>
       <div className={loading ? "dim" : ""}>

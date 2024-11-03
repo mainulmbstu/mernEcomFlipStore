@@ -48,7 +48,7 @@ const CreateProduct = () => {
   };
 
   useEffect(() => {
-    if (token && userInfo.role) getProducts(page, size);
+    if (token && userInfo.role==='admin') getProducts(page, size);
   }, []);
   //======================================================
   let [searchVal, setSearchVal] = useState("");

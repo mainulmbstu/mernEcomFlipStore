@@ -8,6 +8,10 @@ const upload = require("../middleware/multerMiddleware");
 const router = express.Router();
 
 router.post('/create-product', loginMiddleware, commonMiddleware, upload.array('picture', 10), productControlls.createProduct)
+router.post('/create-page', loginMiddleware, adminMiddleware, upload.fields([
+    { name: 'banners', maxCount: 20 },
+    {name:'products'}
+]), productControlls.createPage)
 // router.post('/create-product', loginMiddleware, adminMiddleware, upload.single('picture'), productControlls.createProduct)
 
 // router.get("/product-list", productControlls.productList);
@@ -32,6 +36,8 @@ router.post('/rating', productControlls.ratingProduct)
 router.get("/getreview/:pid", productControlls.getReview);
 router.post("/cart-update", productControlls.getCartUpdate);
 router.get("/store/:store", productControlls.getStoreProducts);
+router.get("/page/:cid", productControlls.getProductsPage);
+router.delete("/delete-page/:pid", productControlls.deleteProductsPage);
 
 
 // ============== checkout ========================================

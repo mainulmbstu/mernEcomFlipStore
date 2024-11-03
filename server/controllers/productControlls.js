@@ -7,6 +7,7 @@ const ProductModel = require("../models/productModel");
 const CategoryModel = require("../models/CategoryModel")
 const slugify = require("slugify");
 const OrderModel = require("../models/OrderModel");
+const PageModel = require("../models/PageModel");
 const { ReviewModel, RatingModel } = require("../models/ReviewModel");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const ejs = require("ejs");
@@ -84,6 +85,76 @@ const createProduct = async (req, res) => {
     console.log(error);
     res.status(500).send({
       msg: "error from product create, check file size and file type",
+      error,
+    });
+  }
+};
+//==================================================
+const createPage = async (req, res) => {
+  
+  try {
+    let { title, description, category } =
+    req.body;
+    const {banners, products} = req.files;
+    if (!title || !description || !category) {
+      return res.send({ msg: "All fields are required" });
+    }
+    if (category === "undefined") {
+      return res.send({ msg: "Wrong category" });
+    }
+    let bannerPaths = (await banners?.length) && banners.map(ban => ban.path);
+    
+    let bannerlinks = [];
+    for (spath of bannerPaths) {
+      const { secure_url, public_id } = await uploadOnCloudinary(
+        spath,
+        "banners"
+      ); // path and folder name as arguments
+      bannerlinks = [...bannerlinks, { secure_url, public_id }];
+      if (!secure_url) {
+        return res
+        .status(500)
+        .send({ msg: "error uploading image", error: secure_url });
+      }
+    }
+    let productPaths = (await products?.length) && products.map(prod => prod.path);
+    
+    let productlinks = [];
+    if (productPaths?.length) {
+      for (spath of productPaths) {
+        const { secure_url, public_id } = await uploadOnCloudinary(
+          spath,
+          "pageProd"
+        ); // path and folder name as arguments
+        productlinks = [...productlinks, { secure_url, public_id }];
+        if (!secure_url) {
+          return res
+            .status(500)
+            .send({ msg: "error uploading image", error: secure_url });
+        }
+      }
+}
+
+    let page = new PageModel();
+
+    page.title = title.toUpperCase();
+    page.description = description;
+    page.category = category;
+    page.creator = req.user?._id;
+    page.banners = bannerlinks;
+    page.products = productlinks;
+
+    await page.save();
+
+    res.status(201).send({
+      msg: "page created successfully",
+      success: true,
+      page,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      msg: "error from page create, check file size and file type",
       error,
     });
   }
@@ -958,11 +1029,53 @@ const getStoreProducts = async (req, res) => {
     res.status(200).send({ success: true, products, total });
   } catch (error) {
     console.log(error);
+    res.status(500).send({ success: false, msg: "error from pageInfo", error });
+  }
+};
+//===============================================================
+const getProductsPage = async (req, res) => {
+  try {
+    const {cid } = req.query;
+    const page = await PageModel.findOne({category:cid })
+
+    // console.log(total, page);
+    res.status(200).send({ success: true, page });
+  } catch (error) {
+    console.log(error);
     res
       .status(500)
       .send({ success: false, msg: "error from offerProductList", error });
   }
 };
+
+//=================================================================
+let deleteProductsPage = async (req, res) => {
+  try {
+    let pid = req.params.pid;
+    let deleteItem = await PageModel.findById(pid);
+    if (!deleteItem) {
+      return res.status(400).send({ msg: "No data found" });
+    }
+    if (deleteItem.banners?.length && deleteItem.banners[0].public_id) {
+      let publicPaths = await deleteItem?.banners?.map((ban) => ban.public_id);
+      for (dpath of publicPaths) {
+        await deleteImageOnCloudinary(dpath);
+      }
+    }
+    if (deleteItem.products?.length && deleteItem.products[0].public_id) {
+      let publicPaths = await deleteItem?.products?.map((prod) => prod.public_id);
+      for (dpath of publicPaths) {
+        await deleteImageOnCloudinary(dpath);
+      }
+    }
+
+    await PageModel.findByIdAndDelete(pid);
+    res.status(200).send({ msg: "Page deleted successfully" });
+  } catch (error) {
+    res.status(401).send({ msg: "error from deletePage", error });
+  }
+};
+
 //==============================================================
 
 module.exports = {
@@ -987,4 +1100,7 @@ module.exports = {
   pdfGenerateMail,
   reportView,
   getStoreProducts,
+  createPage,
+  getProductsPage,
+  deleteProductsPage,
 };

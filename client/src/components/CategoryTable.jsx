@@ -8,6 +8,7 @@ const CategoryTable = ({ value }) => {
   const [inputVal, setInputVal] = useState({
     name: "",
     parentId: "",
+    type: "",
     picture: "",
   });
   let { token,getCategory } = useAuth();
@@ -15,7 +16,6 @@ const CategoryTable = ({ value }) => {
     let { name, value } = e.target;
     setInputVal((prev) => ({ ...prev, [name]: value }));
   };
-
   //===============================================
   let refPic = useRef()
 
@@ -25,6 +25,7 @@ const CategoryTable = ({ value }) => {
     formdata.append("picture", inputVal.picture);
     formdata.append("name", inputVal.name);
     formdata.append("parentId", inputVal.parentId);
+    formdata.append("type", inputVal.type);
 
     try {
       setLoading(true);
@@ -44,6 +45,7 @@ const CategoryTable = ({ value }) => {
         setInputVal({
           name: "",
           parentId: inputVal.parentId,
+          type:'',
           picture: '',
         });
         refPic.current.value=''
@@ -104,7 +106,6 @@ const CategoryTable = ({ value }) => {
           />
 
           <input
-            // ref={refPic}
             className="form-control border border-black m-2"
             list="categoryList"
             type={"text"}
@@ -128,6 +129,21 @@ const CategoryTable = ({ value }) => {
                 return <option key={item._id} value={item.slug}></option>;
               })}
           </datalist>
+
+          <select
+            value={inputVal.type}
+            onChange={(e) =>
+              setInputVal((prev) => ({
+                ...prev,
+                type: e.target.value,
+              }))
+            }
+            className="form-select border border-black m-2"
+          >
+            <option value="">Select type</option>
+            <option value="store">Store</option>
+            <option value="page">Page</option>
+          </select>
 
           <label htmlFor="pic" className="">
             Upload product image (jpeg, jpg, png, webp, Max size- 1mb)

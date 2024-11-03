@@ -3,7 +3,6 @@ import "bootstrap";
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -13,7 +12,6 @@ import Privacy from "./pages/Privacy";
 import { Private } from "./components/routes/Private";
 import ForgotPassword from "./pages/ForgotPassword";
 import { AdminAuth } from "./components/routes/AdminAuth";
-// import AdminPanel from "./pages/admin/AdminPanel";
 import Profile from "./pages/user/Profile";
 import ProductInput from "./pages/admin/ProductInput";
 import MoreInfo from "./components/MoreInfo";
@@ -26,15 +24,13 @@ import Layout from "./components/Layout";
 import Gallery from "./pages/user/Gallery";
 import ResetNewPassword from "./pages/user/ResetNewPassword";
 import AdminContacts from "./pages/admin/AdminContacts";
-// import CategoryHeader from "./components/CategoryHeader";
 import AdminOffer from "./pages/admin/AdminOffer";
 import { StoreAuth } from "./components/routes/StoreAuth";
-// import StorePanel from "./pages/store/StorePanel";
 import StoreProfile from "./pages/store/StoreProfile";
 import StoreOrders from "./pages/store/StoreOrders";
 import StoreContacts from "./pages/store/StoreContacts";
 import Product from "./pages/store/Product";
-// import StorePage from "./components/StorePage"
+import CreatePage from "./pages/admin/CreatePage";
 
 // let CategoryHeader= lazy(()=>import('./components/CategoryHeader'))
 let CategoryHeader= lazy(()=>import('./components/CategoryHeader'))
@@ -103,6 +99,10 @@ const App = () => {
               <Route path="admin" element=<AdminPanel /> />
               <Route path="admin/profile" element=<AdminProfile /> />
               <Route path="admin/create-category" element=<CreateCategory /> />
+              <Route
+                path="admin/create-product-page"
+                element=<CreatePage />
+              />
               <Route path="admin/create-product" element=<CreateProduct /> />
               <Route
                 path="admin/create-product/input"

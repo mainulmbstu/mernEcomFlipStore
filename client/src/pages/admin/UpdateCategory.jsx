@@ -9,6 +9,7 @@ const UpdateCategory = ({ value }) => {
   const [inputVal, setInputVal] = useState({
     name: "",
     parentId: "",
+    type: "",
     picture: "",
   });
   // eslint-disable-next-line react/prop-types
@@ -18,13 +19,14 @@ const UpdateCategory = ({ value }) => {
   let { token, getCategory } = useAuth();
 
 
- 
+ console.log(inputVal);
 
   // eslint-disable-next-line react/prop-types
   if (updateItem?.name && trix) {
     setInputVal({
       name:'',
       parentId: updateItem?.parentId || undefined,
+      type: updateItem?.type,
       picture: "",
     });
     setTrix(false);
@@ -48,6 +50,7 @@ let parentRef = useRef()
     formdata.append("picture", inputVal?.picture);
     formdata.append("name", inputVal.name);
     formdata.append("parentId", inputVal.parentId);
+    formdata.append("type", inputVal.type);
     try {
       setLoading(true);
 
@@ -208,6 +211,25 @@ let parentRef = useRef()
                             );
                           })}
                       </datalist>
+                    </div>
+
+                    <div>
+                      <select
+                        onChange={(e) =>
+                          setInputVal((prev) => ({
+                            ...prev,
+                            type: e.target.value,
+                          }))
+                        }
+                        value={inputVal?.type}
+                        className="form-select border border-black mb-2"
+                      >
+                        {/* <option value={inputVal.type}>
+                          {inputVal.type === "store" ? "Store" : "Page"}
+                        </option> */}
+                        <option value="store">Store</option>
+                        <option value="page">Page</option>
+                      </select>
                     </div>
 
                     <div>

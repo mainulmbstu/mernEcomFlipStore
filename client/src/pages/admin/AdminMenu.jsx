@@ -27,6 +27,13 @@ const AdminMenu = () => {
         >
           Create Category
         </NavLink>
+        <NavLink
+          to="/dashboard/admin/create-product-page"
+          className="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Create Product Page
+        </NavLink>
 
         <NavLink
           to="/dashboard/admin/create-product"
