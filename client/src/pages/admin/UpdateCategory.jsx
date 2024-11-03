@@ -19,8 +19,6 @@ const UpdateCategory = ({ value }) => {
   let { token, getCategory } = useAuth();
 
 
- console.log(inputVal);
-
   // eslint-disable-next-line react/prop-types
   if (updateItem?.name && trix) {
     setInputVal({

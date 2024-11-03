@@ -13,7 +13,7 @@ const HomeCatPage = () => {
         category.map((item) => (
           <div key={item._id} className="col-3 col-md-2 p-2 ">
             <div className='p-2'>
-              <Link to={`products/category/${item?.slug}`} className=' text-decoration-none'>
+              <Link to={`products/category/${item?.slug}?cid=${item?._id}&type=${item?.type}`} className=' text-decoration-none'>
                 <img
                   src={
                     item.picture
