@@ -63,7 +63,7 @@ const CreatePage = () => {
     formdata.append("title", inputVal.title);
     formdata.append("description", inputVal.description);
     formdata.append("category", inputVal.category);
-
+console.log(formdata);
     try {
       setLoading(true);
 

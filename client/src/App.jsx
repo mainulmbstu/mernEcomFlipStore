@@ -31,6 +31,7 @@ import StoreOrders from "./pages/store/StoreOrders";
 import StoreContacts from "./pages/store/StoreContacts";
 import Product from "./pages/store/Product";
 import CreatePage from "./pages/admin/CreatePage";
+import { LoggedIn } from "./components/routes/LoggedIn";
 
 // let CategoryHeader= lazy(()=>import('./components/CategoryHeader'))
 let CategoryHeader= lazy(()=>import('./components/CategoryHeader'))
@@ -76,10 +77,6 @@ const App = () => {
             <Route path="/" element=<Home /> />
             <Route path="/gallery" element=<Gallery /> />
             <Route path="/offers" element=<OfferPage /> />
-            <Route
-              path="/resetnewpassword/:email"
-              element=<ResetNewPassword />
-            />
 
             <Route path="/products/search" element=<SearchResults /> />
             <Route
@@ -99,10 +96,7 @@ const App = () => {
               <Route path="admin" element=<AdminPanel /> />
               <Route path="admin/profile" element=<AdminProfile /> />
               <Route path="admin/create-category" element=<CreateCategory /> />
-              <Route
-                path="admin/create-product-page"
-                element=<CreatePage />
-              />
+              <Route path="admin/create-product-page" element=<CreatePage /> />
               <Route path="admin/create-product" element=<CreateProduct /> />
               <Route
                 path="admin/create-product/input"
@@ -127,9 +121,16 @@ const App = () => {
               <Route path="store/contacts" element=<StoreContacts /> />
             </Route>
 
-            <Route path="/login" element=<Login /> />
-            <Route path="/register/:type" element=<Register /> />
-            <Route path="/forgotpassword" element=<ForgotPassword /> />
+            <Route path="/*" element=<LoggedIn />>
+              <Route path="login" element=<Login /> />
+              <Route path="register" element=<Register /> />
+              <Route path="forgotpassword" element=<ForgotPassword /> />
+              <Route
+                path="resetnewpassword/:email"
+                element=<ResetNewPassword />
+              />
+            </Route>
+
             <Route path="/contacts" element=<Contacts /> />
             <Route path="/about" element=<About /> />
             <Route path="/privacy" element=<Privacy /> />

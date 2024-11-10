@@ -1,0 +1,49 @@
+windows +; emoji keyboard on vscode
+
+
+npm i -g bun
+then use bun (instead of npm)  
+
+
+
+1. go to folder, type cmd in folder location path, press Enter to open cmd,
+
+2. type "npm create vite@latest" and press Enter, then follow the intruction
+***npm i react@experimental react-dom@experimental (for experimental version(
+vs code
+
+1. open folder in vs code editor
+ 2. open terminal in vs code editor
+3. 'npm run dev' and press Enter
+4. ctrl + click on the url to open in browser
+
+Bootstrap
+1. npm install react-bootstrap bootstrap
+2.import 'bootstrap/dist/css/bootstrap.min.css'; on main.jsx/App.jsx
+3.2.import 'bootstrap';
+
+React Router
+
+npm install react-router-dom
+         or
+npm install react-router-dom localforage match-sorter sort-by
+
+React icon
+1. npm install react-icons --save
+2. import { IconName } from "react-icons/bs"; on respective file
+
+Toastify
+npm i react-toastify
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+modal 
+npm i antd
+
+all in one: npm install react-router-dom react-bootstrap bootstrap react-icons --save react-toastify
+
+node js
+1. npm init
+2. npm i express (and create a index.js file)
+3. npm i nodemon
+then for auto restart node after any change type in package.json under scripts (start:"nodemon index.js") 

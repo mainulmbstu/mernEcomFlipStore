@@ -94,7 +94,7 @@ const createPage = async (req, res) => {
   
   try {
     let { title, description, category } =
-    req.body;
+      req.body;
     const {banners, products} = req.files;
     if (!title || !description || !category) {
       return res.send({ msg: "All fields are required" });
@@ -509,7 +509,7 @@ const productFilter = async (req, res) => {
     const products = await ProductModel.find(args)
       .skip(skip)
       .limit(size)
-      .populate("category")
+      .populate("category", 'name')
       .sort({ updatedAt: -1 });
 
     res.status(200).send({ success: true, products, total });
